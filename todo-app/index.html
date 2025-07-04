@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My To-D0 List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <p id="taskCount">Tasks : 0</p>
+        <button onclick="clearAll()">Clear All</button>
+    </div>
+
+    <script>
+        function addTask(){
+            const input=document.getElementById('taskInput');
+            const taskText=input.value.trim();
+
+            if(taskText===""){
+                alert('Please enter a task!')
+                return;
+            }
+
+            const li=document.createElement('li');
+            li.textContent=taskText;
+
+            li.onclick=function(){
+                li.classList.toggle('done');
+            };
+
+            const delBtn=document.createElement('button');
+            delBtn.textContent='Del';
+            delBtn.className='delete-btn';
+            delBtn.onclick=function(){
+                li.remove();
+                updateTaskCount();
+            };
+
+            li.appendChild(delBtn);
+
+            document.getElementById('taskList').appendChild(li);
+            input.value="";
+
+            updateTaskCount();
+        }
+
+        function clearAll(){
+            document.getElementById('taskList').innerHTML="";
+            updateTaskCount();
+        }
+
+        function updateTaskCount(){
+            const tasks=document.querySelectorAll('#taskList li');
+            document.getElementById('taskCount').textContent=`Tasks : ${tasks.length}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="modeToggle">🌙 Dark Mode</button>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <input type="text" id="nameInput" placeholder="Enter your Name">
+        <button onclick="greet()">Greet Me</button>
+        <h2 id="greeting"></h2>
+    </div>
+
+    <script>
+        function greet(){
+            const name = document.getElementById("nameInput").value;
+            const emojis = ["😎", "🌟", "👋", "🔥", "💥", "💻"];
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+            const greetingText=name?`Hello, ${name}! Welcome ${randomEmoji}`: "Please enter your name!";
+
+            document.getElementById('greeting').innerText=greetingText;
+        }
+
+        document.getElementById('modeToggle').onclick=function(){
+            document.body.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>
